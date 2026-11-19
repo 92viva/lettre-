@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#20040e">
+<meta name="robots" content="noindex, nofollow">
+<title>Une Lettre Pour Toi</title>
+<meta name="description" content="Un message secret t'attend. Brise le sceau pour le lire.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Une lettre t'attend ❤️">
+<meta property="og:description" content="Un message secret pour toi. Brise le sceau pour le lire.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23b81b43' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* Layout: one centred stack (title, wax-sealed envelope, link to write your own letter); the letter opens as an ivory parchment over a dimmed wine ground. */
+:root {
+  --wine-950: #120107;
+  --wine-900: #20040e;
+  --wine-850: #2a0613;
+  --wine-800: #4a0d23;
+  --wine-600: #7a0e28;
+  --wine-500: #9e1438;
+  --wine-400: #b81b43;
+  --gold-100: #fdf1c8;
+  --gold-300: #f3be3a;
+  --gold-600: #b8860b;
+  --gold-800: #7a5802;
+  --rose-200: #fecdd3;
+  --rose-300: #fda4af;
+  --paper: #faf4e8;
+  --paper-dot: #e5d7c3;
+  --paper-edge: #e2d2b9;
+  --ink: #4c0519;
+  --ink-soft: #7c4a57;
+  --font-love: 'Great Vibes', 'Snell Roundhand', cursive;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { height: 100%; }
+body {
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-sans);
+  color: var(--rose-200);
+  background-color: var(--wine-900);
+  background-image: radial-gradient(circle at center, var(--wine-800) 0%, var(--wine-900) 70%, var(--wine-950) 100%);
+  background-attachment: fixed;
+  padding-top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 3.25rem);
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+
+.ico { width: 1em; height: 1em; fill: currentColor; flex: none; }
+.ico-line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+[hidden] { display: none !important; }
+
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 3px; }
+
+/* Floating hearts */
+.bg-hearts { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.bg-hearts span {
+  position: absolute;
+  top: 0;
+  display: block;
+  line-height: 0;
+  color: rgba(255, 182, 193, 0.4);
+  animation: float 10s linear infinite;
+  opacity: 0;
+}
+@keyframes float {
+  0% { transform: translateY(105vh) scale(0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+}
+#burst { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+
+/* Top bar */
+.topbar {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
+  left: max(16px, env(safe-area-inset-left, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.chip {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  color: rgba(253, 241, 200, 0.75);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(253, 241, 200, 0.2);
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.chip:hover { color: var(--gold-100); background: rgba(0, 0, 0, 0.5); }
+.chip[aria-pressed="true"] { color: var(--gold-100); border-color: var(--gold-300); }
+
+/* Page */
+#page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 42rem;
+  margin-block: auto;
+  padding-block: 1.5rem;
+  text-align: center;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: rgba(76, 5, 25, 0.6);
+  color: var(--rose-300);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  border-radius: 999px;
+}
+h1 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-love);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--gold-100);
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  text-wrap: balance;
+}
+.subtitle { margin: 0 auto 2.25rem; max-width: 30rem; font-size: 0.875rem; font-weight: 300; line-height: 1.6; color: var(--rose-300); }
+
+/* Envelope */
+.envelope-wrap { width: min(420px, 100%); margin-inline: auto; perspective: 1200px; }
+.envelope {
+  position: relative;
+  aspect-ratio: 14 / 9;
+  background: var(--wine-600);
+  border-radius: 12px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.pocket {
+  position: absolute;
+  inset: 0;
+  background: var(--wine-500);
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 0 12px 12px;
+  z-index: 3;
+  pointer-events: none;
+}
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 58%;
+  background: var(--wine-400);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 4;
+}
+.envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
+
+.wax-seal {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: min(156px, 46%);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  background: radial-gradient(circle, var(--gold-300) 0%, var(--gold-600) 60%, var(--gold-800) 100%);
+  border: 2px dashed rgba(255, 235, 150, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.7), inset 0 -4px 8px rgba(0, 0, 0, 0.6);
+  color: var(--gold-100);
+  transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease, visibility 0s;
+}
+.wax-seal:hover { transform: translate(-50%, -50%) scale(1.04); box-shadow: 0 12px 30px rgba(243, 190, 58, 0.5), inset 0 2px 6px rgba(255, 255, 255, 0.9); }
+.wax-seal.broken {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(1.4);
+  pointer-events: none;
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s;
+}
+.wax-seal.shake { animation: shake 0.5s; }
+@keyframes shake {
+  0%, 100% { translate: 0 0; }
+  20% { translate: -8px 0; }
+  40% { translate: 8px 0; }
+  60% { translate: -5px 0; }
+  80% { translate: 5px 0; }
+}
+.seal-for { font-size: 0.625rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.seal-heart { font-size: 0.8rem; }
+#nameInput {
+  width: 7rem;
+  padding: 0.15rem 0.25rem;
+  font: 600 1rem var(--font-sans);
+  text-align: center;
+  color: var(--gold-100);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid rgba(253, 241, 200, 0.6);
+  border-radius: 0;
+}
+#nameInput::placeholder { color: rgba(253, 241, 200, 0.6); font-weight: 400; }
+#nameInput:focus { outline: none; border-bottom-color: var(--gold-100); }
+#nameInput:read-only { border-bottom-style: dotted; }
+.open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-100);
+  background: rgba(253, 241, 200, 0.2);
+  border: 1px solid rgba(253, 241, 200, 0.4);
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+.open-btn:hover { background: rgba(253, 241, 200, 0.4); }
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  color: var(--rose-300);
+  background: transparent;
+  border: 1px solid rgba(253, 164, 175, 0.3);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+.link-btn:hover { background: rgba(253, 164, 175, 0.1); color: var(--gold-100); }
+
+/* Overlays */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: max(1rem, env(safe-area-inset-top, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: rgba(15, 2, 7, 0.78);
+  backdrop-filter: blur(8px);
+  overscroll-behavior: contain;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.6s ease, visibility 0s 0.6s;
+}
+.overlay.active { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.6s ease, visibility 0s; }
+
+.parchment {
+  width: 100%;
+  max-width: 620px;
+  max-height: 85vh;
+  max-height: 85dvh;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  text-align: left;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--paper-dot) 1px, transparent 0);
+  background-size: 24px 24px;
+  border: 1px solid var(--paper-edge);
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(184, 134, 11, 0.2);
+  transform: translateY(30px) scale(0.92);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.overlay.active .parchment { transform: none; }
+.parchment:focus { outline: none; }
+.parchment::-webkit-scrollbar { width: 6px; }
+.parchment::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.03); border-radius: 8px; }
+.parchment::-webkit-scrollbar-thumb { background: rgba(122, 14, 40, 0.25); border-radius: 8px; }
+
+.letter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(120, 53, 15, 0.15);
+}
+.letter-kicker { margin: 0; font: italic 500 0.75rem var(--font-serif); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.letter-date { margin: 0; font: 400 clamp(2rem, 6vw, 2.5rem) var(--font-love); color: var(--ink); }
+.stamp { display: grid; place-items: center; width: 3rem; height: 3rem; font-size: 1.25rem; color: var(--wine-500); background: rgba(120, 53, 15, 0.05); border: 1px solid rgba(120, 53, 15, 0.2); border-radius: 50%; }
+.letter-text {
+  min-height: 11rem;
+  margin: 0;
+  font: 400 clamp(1.6rem, 1.2rem + 1.8vw, 1.95rem) / 1.5 var(--font-love);
+  color: var(--ink);
+  cursor: default;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.typing-cursor #letterTyped::after { content: '|'; font-weight: 700; color: var(--wine-600); animation: blink 0.7s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.reveal { opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 0s 1s; }
+.reveal.show { opacity: 1; visibility: visible; transition: opacity 1s ease, visibility 0s; }
+
+.signature { margin: 1rem 0 0; text-align: right; font: 400 1.9rem var(--font-love); color: var(--wine-600); overflow-wrap: anywhere; }
+
+.ask { margin-top: 1.5rem; padding-top: 1.25rem; text-align: center; border-top: 1px dashed rgba(120, 53, 15, 0.25); }
+.ask-q { margin: 0 0 0.75rem; font: 400 2rem / 1.2 var(--font-love); color: var(--ink); text-wrap: balance; }
+.ask-btns { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1.4rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-yes { font-size: var(--yes-size, 1rem); color: var(--gold-100); background: var(--wine-600); border-color: rgba(190, 18, 60, 0.5); box-shadow: 0 4px 14px rgba(122, 14, 40, 0.35); }
+.btn-yes:hover { background: var(--wine-500); }
+.btn-no { font-size: 0.875rem; color: var(--ink); background: transparent; border-color: rgba(76, 5, 25, 0.4); }
+.btn-no:hover { background: rgba(76, 5, 25, 0.08); }
+.thanks { margin: 1.5rem 0 0; text-align: center; font: 400 2.1rem / 1.25 var(--font-love); color: var(--wine-600); text-wrap: balance; }
+.reply { display: flex; justify-content: center; margin-top: 1rem; }
+.reply .btn { color: var(--gold-100); background: var(--wine-600); border-color: rgba(190, 18, 60, 0.5); font-size: 0.875rem; }
+.reply .btn:hover { background: var(--wine-500); }
+
+.letter-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(120, 53, 15, 0.15); }
+.letter-foot p { margin: 0; display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-style: italic; color: var(--ink-soft); }
+.letter-foot .ico { color: var(--wine-500); }
+.btn-wine { padding-block: 0.4rem; font-size: 0.75rem; color: var(--rose-200); background: var(--ink); border-color: rgba(159, 18, 57, 0.4); }
+.btn-wine:hover { background: var(--wine-600); }
+
+/* Panels (composer, AI settings) */
+.panel {
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  text-align: left;
+  color: var(--gold-100);
+  background: var(--wine-850);
+  border: 1px solid rgba(253, 241, 200, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+.panel:focus { outline: none; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+.panel h2 { margin: 0; font: 700 1.25rem var(--font-serif); text-wrap: balance; }
+.icon-btn { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -0.5rem; font-size: 1.25rem; color: var(--rose-300); background: transparent; border: 0; border-radius: 50%; }
+.icon-btn:hover { color: var(--gold-100); }
+.panel-lead { margin: 0 0 1.25rem; font-size: 0.8125rem; line-height: 1.6; color: var(--rose-300); }
+.field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+.field label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose-300); }
+.field input, .field textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  font: 400 1rem var(--font-sans);
+  color: var(--gold-100);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  border-radius: 10px;
+}
+.field textarea { min-height: 7rem; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(253, 164, 175, 0.55); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--gold-300); }
+.field-note { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.75rem; color: var(--rose-300); }
+.error { margin: -0.5rem 0 1rem; font-size: 0.8125rem; color: var(--gold-300); }
+.btn-gold { color: var(--wine-900); background: var(--gold-300); }
+.btn-gold:hover { background: var(--gold-100); }
+.btn-ghost { color: var(--gold-100); background: transparent; border-color: rgba(253, 241, 200, 0.35); }
+.btn-ghost:hover { background: rgba(253, 241, 200, 0.1); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.result { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(253, 241, 200, 0.2); }
+.result p { margin: 0 0 0.75rem; font-size: 0.8125rem; line-height: 1.6; color: var(--rose-300); }
+.link-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+.link-row input { flex: 1 1 12rem; min-width: 0; padding: 0.6rem 0.75rem; font: 400 0.8125rem var(--font-sans); color: var(--gold-100); background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; }
+.status { min-height: 1.25rem; margin: 0 0 0.75rem; font-size: 0.8125rem; color: var(--gold-300); }
+.code { font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--gold-300); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></symbol>
+  <symbol id="i-env" viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11H3z"/><path d="M3 9l9 6 9-6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M3 7v6h6"/><path d="M3.5 13A9 9 0 1 0 6 6.3"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
+</svg>
+
+<noscript><p style="position:relative;z-index:2;text-align:center">Active JavaScript pour ouvrir ta lettre.</p></noscript>
+
+<div class="bg-hearts" id="heartsContainer" aria-hidden="true"></div>
+<canvas id="burst" aria-hidden="true"></canvas>
+
+<div id="page">
+  <div class="topbar">
+    <button type="button" class="chip" id="musicBtn" aria-pressed="false" aria-label="Musique d'ambiance">
+      <svg class="ico ico-line" aria-hidden="true"><use href="#i-note"/></svg>
+      <span id="musicLabel">Musique</span>
+    </button>
+    <button type="button" class="chip" id="aiOpen" aria-label="Réglages IA">
+      <svg class="ico ico-line" aria-hidden="true"><use href="#i-key"/></svg>
+      <span>IA</span>
+    </button>
+  </div>
+
+  <header>
+    <span class="badge">Saint-Valentin ✨</span>
+    <h1>Un Message Secret Pour Toi... ❤️</h1>
+    <p class="subtitle" id="subtitle">Inscris ton prénom au cœur du sceau pour desceller la lettre.</p>
+  </header>
+
+  <div class="envelope-wrap">
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="pocket"></div>
+      <div class="wax-seal" id="waxSeal">
+        <svg class="ico seal-heart" aria-hidden="true"><use href="#i-heart"/></svg>
+        <span class="seal-for">Pour :</span>
+        <input type="text" id="nameInput" placeholder="Ton Prénom" aria-label="Ton prénom" autocomplete="off" maxlength="40">
+        <button type="button" class="open-btn" id="openBtn">
+          <span>Ouvrir</span>
+          <svg class="ico ico-line" style="font-size:0.7rem" aria-hidden="true"><use href="#i-env"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="link-btn" id="composeOpen">
+    <svg class="ico ico-line" aria-hidden="true"><use href="#i-link"/></svg>
+    Écrire ma propre lettre
+  </button>
+</div>
+
+<!-- Letter -->
+<div class="overlay" id="letterModal" inert>
+  <div class="parchment" id="parchmentCard" role="dialog" aria-modal="true" aria-labelledby="letterDate" tabindex="-1">
+    <div class="letter-head">
+      <div>
+        <p class="letter-kicker">Édition Spéciale</p>
+        <h2 class="letter-date" id="letterDate">14 Février</h2>
+      </div>
+      <div class="stamp"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></div>
+    </div>
+
+    <p class="letter-text" id="letterContent" title="Touche pour afficher tout le texte"><span class="sr-only" id="letterFull"></span><span id="letterTyped" aria-hidden="true"></span></p>
+
+    <div class="reveal" id="afterLetter">
+      <p class="signature" id="signature" hidden></p>
+
+      <div class="ask" id="ask">
+        <p class="ask-q">Veux-tu être ma Valentine ?</p>
+        <div class="ask-btns">
+          <button type="button" class="btn btn-yes" id="yesBtn">Oui</button>
+          <button type="button" class="btn btn-no" id="noBtn">Non</button>
+        </div>
+      </div>
+      <p class="thanks" id="thanks" hidden>Tu viens de rendre ce 14 février magique.</p>
+      <div class="reply" id="reply" hidden>
+        <button type="button" class="btn" id="replyBtn">
+          <svg class="ico ico-line" aria-hidden="true"><use href="#i-send"/></svg>
+          <span id="replyLabel">Répondre par message</span>
+        </button>
+      </div>
+
+      <div class="letter-foot">
+        <p><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg> Joyeuse Saint-Valentin</p>
+        <button type="button" class="btn btn-wine" id="restartBtn">
+          <svg class="ico ico-line" aria-hidden="true"><use href="#i-undo"/></svg>
+          <span>Recommencer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Composer -->
+<div class="overlay" id="composeModal" inert>
+  <div class="panel" id="composeCard" role="dialog" aria-modal="true" aria-labelledby="composeTitle" tabindex="-1">
+    <div class="panel-head">
+      <h2 id="composeTitle">Ta lettre personnalisée</h2>
+      <button type="button" class="icon-btn" id="composeClose" aria-label="Fermer"><svg class="ico ico-line" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="panel-lead">Choisis le prénom et ton message. Tu obtiens un lien à envoyer : la personne verra son prénom sur l'enveloppe.</p>
+
+    <form id="composeForm" novalidate>
+      <div class="field">
+        <label for="composeTo">Pour qui ?</label>
+        <input type="text" id="composeTo" placeholder="Son prénom" maxlength="40" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="composeFrom">De la part de (facultatif)</label>
+        <input type="text" id="composeFrom" placeholder="Ton prénom" maxlength="40" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="composeMsg">Ton message (facultatif)</label>
+        <textarea id="composeMsg" maxlength="400" placeholder="Écris ce que tu as sur le cœur, ou laisse vide pour un compliment tiré au sort."></textarea>
+        <div class="field-note"><span>Il s'écrira lettre par lettre.</span><span id="msgCount">0 / 400</span></div>
+      </div>
+      <p class="error" id="composeError" hidden>Indique le prénom de la personne.</p>
+      <button type="submit" class="btn btn-gold">Créer le lien</button>
+    </form>
+
+    <div class="result" id="composeResult" hidden>
+      <p>Copie ce lien et envoie-le. Il contient ton message, rien n'est enregistré ailleurs.</p>
+      <div class="link-row">
+        <input type="text" id="linkOut" readonly aria-label="Lien de la lettre">
+        <button type="button" class="btn btn-ghost" id="copyBtn">Copier</button>
+      </div>
+      <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-ghost" id="testBtn">Tester la lettre</button>
+        <button type="button" class="btn btn-ghost" id="shareBtn" hidden>Partager</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI settings -->
+<div class="overlay" id="aiModal" inert>
+  <div class="panel" id="aiCard" role="dialog" aria-modal="true" aria-labelledby="aiTitle" tabindex="-1">
+    <div class="panel-head">
+      <h2 id="aiTitle">Compliments par IA (facultatif)</h2>
+      <button type="button" class="icon-btn" id="aiClose" aria-label="Fermer"><svg class="ico ico-line" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="panel-lead">Avec une clé API Groq, chaque ouverture sans message personnel génère un compliment unique. Sans clé, des textes enregistrés sont utilisés. La clé reste dans ce navigateur uniquement : une personne qui reçoit ton lien n'y a pas accès.</p>
+    <div class="field">
+      <label for="aiKey">Clé API</label>
+      <input type="password" id="aiKey" placeholder="gsk_..." autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="aiModel">Modèle</label>
+      <input type="text" id="aiModel" class="code" autocomplete="off" spellcheck="false">
+    </div>
+    <p class="status" id="aiStatus" role="status" aria-live="polite"></p>
+    <button type="button" class="btn btn-gold" id="aiSave">Enregistrer</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const $ = (id) => document.getElementById(id);
+  const REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const MSG_MAX = 400;
+  const DEFAULT_MODEL = 'qwen/qwen3.8-27b';
+
+  const COMPLIMENTS = [
+    "tu es cette douce étincelle qui illumine mes journées et transforme chaque moment ordinaire en un souvenir précieux. Merci d'exister et de faire battre mon cœur un peu plus fort chaque jour.",
+    "tu es un véritable rayon de soleil. Ta gentillesse, ton sourire et la douceur de ton âme rendent ce monde infiniment plus beau. Que cette journée te rappelle à quel point tu es unique.",
+    "ton regard et ta présence ont ce pouvoir magique d'apaiser tout ce qui t'entoure. Être à tes côtés est une bénédiction, et je ne cesserai jamais d'admirer la personne extraordinaire que tu es.",
+    "tu as ce talent rare de rendre la vie plus douce et plus poétique juste en restant toi-même. Ta lumière est précieuse et ton cœur est un trésor.",
+    "tu es la plus belle des pensées qui traverse mon esprit. Chaque rire partagé avec toi est une promesse d'éternité et un bonheur renouvelé.",
+    "ta voix est ma mélodie préférée et ton sourire, mon plus beau paysage. Avec toi, même les jours gris prennent des couleurs de printemps.",
+    "tu es la raison pour laquelle les petites choses deviennent des merveilles. Merci d'être là, simplement, et de rendre tout si lumineux."
+  ];
+  const NO_LABELS = ['Non', 'Tu es sûr(e) ?', 'Vraiment sûr(e) ?', 'Réfléchis encore…', 'Même pas un peu ?', 'Allez, dis oui !'];
+
+  let letter = null;   // personalised letter (link or composer)
+  let draft = null;
+  let opened = false;
+  let typing = null;
+  let finishTyping = null;
+  let noCount = 0;
+  let lastFocus = null;
+  let musicWanted = false;
+
+  // ---------- Storage (may be blocked) ----------
+  const store = {
+    get(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } },
+    set(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) {} }
+  };
+
+  // ---------- Background hearts ----------
+  function floatingHearts() {
+    if (REDUCED) return;
+    const box = $('heartsContainer');
+    for (let i = 0; i < 22; i++) {
+      const s = document.createElement('span');
+      s.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>';
+      s.style.left = Math.random() * 96 + 'vw';
+      s.style.fontSize = (Math.random() * 14 + 10) + 'px';
+      s.style.animationDuration = (Math.random() * 5 + 7) + 's';
+      s.style.animationDelay = (Math.random() * 5) + 's';
+      box.appendChild(s);
+    }
+  }
+
+  // ---------- Heart burst (canvas) ----------
+  const cv = $('burst');
+  const ctx = cv.getContext('2d');
+  const COLORS = ['#f3be3a', '#fda4af', '#b81b43', '#fecdd3', '#fdf1c8'];
+  let parts = [];
+  let raf = 0;
+
+  function sizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(window.innerWidth * dpr);
+    cv.height = Math.round(window.innerHeight * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function drawHeart(s) {
+    ctx.beginPath();
+    ctx.moveTo(0, s * 0.45);
+    ctx.bezierCurveTo(-s * 1.0, -s * 0.15, -s * 0.55, -s * 0.95, 0, -s * 0.4);
+    ctx.bezierCurveTo(s * 0.55, -s * 0.95, s * 1.0, -s * 0.15, 0, s * 0.45);
+    ctx.fill();
+  }
+  function tick() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    parts = parts.filter((p) => p.life > 0 && p.y < window.innerHeight + 40);
+    for (const p of parts) {
+      p.vy += 0.13; p.vx *= 0.992;
+      p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= p.decay;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 1.6));
+      ctx.fillStyle = p.color;
+      drawHeart(p.size);
+      ctx.restore();
+    }
+    if (parts.length) raf = requestAnimationFrame(tick);
+    else { raf = 0; ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); }
+  }
+  function burst(x, y, n) {
+    if (REDUCED) return;
+    sizeCanvas();
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const sp = 2 + Math.random() * 6;
+      parts.push({
+        x: x, y: y,
+        vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 3,
+        size: 5 + Math.random() * 9,
+        rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.2,
+        life: 1, decay: 0.006 + Math.random() * 0.01,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)]
+      });
+    }
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  // ---------- Music box (WebAudio, no file needed) ----------
+  const Music = (function () {
+    const PROG = [
+      [261.63, 329.63, 392.0, 523.25],   // C
+      [220.0, 261.63, 329.63, 440.0],    // Am
+      [174.61, 261.63, 349.23, 440.0],   // F
+      [196.0, 246.94, 293.66, 392.0]     // G
+    ];
+    const PAT = [0, 1, 2, 3, 2, 1, 2, 3];
+    let ac = null, master = null, timer = null, step = 0, on = false;
+
+    function tone(freq, dur, vol, type) {
+      const t = ac.currentTime + 0.03;
+      const o = ac.createOscillator();
+      const g = ac.createGain();
+      o.type = type;
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g); g.connect(master);
+      o.start(t); o.stop(t + dur + 0.1);
+    }
+    function beat() {
+      const chord = PROG[Math.floor(step / 8) % PROG.length];
+      const i = step % 8;
+      tone(chord[PAT[i]], 1.8, 0.16, 'triangle');
+      if (i === 0) tone(chord[0] / 2, 3.2, 0.2, 'sine');
+      step++;
+    }
+    return {
+      start() {
+        if (on) return;
+        try {
+          if (!ac) {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            ac = new AC();
+            master = ac.createGain();
+            master.gain.value = 0.5;
+            master.connect(ac.destination);
+          }
+          if (ac.state === 'suspended') ac.resume();
+        } catch (e) { return; }
+        on = true;
+        beat();
+        timer = setInterval(beat, 430);
+      },
+      stop() { on = false; clearInterval(timer); timer = null; }
+    };
+  })();
+
+  function setMusic(want) {
+    musicWanted = want;
+    $('musicBtn').setAttribute('aria-pressed', want ? 'true' : 'false');
+    $('musicLabel').textContent = want ? 'Musique activée' : 'Musique';
+    if (want) Music.start(); else Music.stop();
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) Music.stop();
+    else if (musicWanted) Music.start();
+  });
+
+  // ---------- Overlays ----------
+  function showOverlay(el, card) {
+    lastFocus = document.activeElement;
+    $('page').inert = true;
+    el.removeAttribute('inert');
+    el.classList.add('active');
+    requestAnimationFrame(() => card.focus({ preventScroll: true }));
+  }
+  function hideOverlay(el) {
+    el.classList.remove('active');
+    el.setAttribute('inert', '');
+    $('page').inert = false;
+  }
+  function restoreFocus() {
+    const back = lastFocus && lastFocus.focus ? lastFocus : $('composeOpen');
+    setTimeout(() => back.focus({ preventScroll: true }), 50);
+  }
+
+  // ---------- Personal link (?pour=&de=&m=) ----------
+  function readParams() {
+    const p = new URLSearchParams(window.location.search);
+    const to = (p.get('pour') || '').trim().slice(0, 40);
+    if (!to) return;
+    applyLetter({ to: to, from: (p.get('de') || '').trim().slice(0, 40), msg: (p.get('m') || '').trim().slice(0, MSG_MAX) });
+  }
+  function buildLink(o) {
+    const p = new URLSearchParams();
+    p.set('pour', o.to);
+    if (o.from) p.set('de', o.from);
+    if (o.msg) p.set('m', o.msg);
+    return window.location.href.split(/[?#]/)[0] + '?' + p.toString();
+  }
+  function applyLetter(l) {
+    letter = l;
+    const input = $('nameInput');
+    input.value = l.to;
+    input.readOnly = true;
+    $('subtitle').textContent = l.from
+      ? l.from + " t'a écrit une lettre. Brise le sceau pour la lire."
+      : "Une lettre t'attend. Brise le sceau pour la lire.";
+    $('replyLabel').textContent = l.from ? 'Répondre à ' + l.from : 'Répondre par message';
+  }
+
+  // ---------- AI compliment (optional) ----------
+  async function aiCompliment(name) {
+    const key = store.get('groq_api_key');
+    if (!key) return null;
+    const model = store.get('groq_model') || DEFAULT_MODEL;
+    const ctl = new AbortController();
+    const to = setTimeout(() => ctl.abort(), 9000);
+    try {
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        signal: ctl.signal,
+        headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: "Tu es un poète expert en compliments romantiques et doux pour la Saint-Valentin. Réponds uniquement avec le texte du compliment, sans guillemets ni explication." },
+            { role: 'user', content: 'Rédige un compliment romantique et poétique pour ' + name + ".\nCONSIGNE OBLIGATOIRE : la phrase DOIT commencer par '" + name + ", tu es' ou '" + name + ", ton'. Maximum 2-3 phrases." }
+          ],
+          max_tokens: 700,
+          temperature: 0.85
+        })
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      let t = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '';
+      t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+      return t || null;
+    } catch (e) {
+      return null;
+    } finally {
+      clearTimeout(to);
+    }
+  }
+  async function pickText(formatted) {
+    if (letter && letter.msg) return letter.msg;
+    const ai = await aiCompliment(formatted);
+    if (ai) return ai;
+    return formatted + ', ' + COMPLIMENTS[Math.floor(Math.random() * COMPLIMENTS.length)];
+  }
+
+  // ---------- Open / type / close ----------
+  function resetAsk() {
+    noCount = 0;
+    $('yesBtn').style.removeProperty('--yes-size');
+    $('noBtn').hidden = false;
+    $('noBtn').textContent = NO_LABELS[0];
+    $('ask').hidden = false;
+    $('thanks').hidden = true;
+    $('reply').hidden = true;
+  }
+
+  function startTyping(text, sig) {
+    const typed = $('letterTyped');
+    const wrap = $('letterContent');
+    const chars = Array.from(text);
+    let i = 0;
+    clearInterval(typing);
+
+    $('letterFull').textContent = text;
+    typed.textContent = '';
+    $('signature').textContent = sig;
+    $('signature').hidden = !sig;
+
+    finishTyping = function () {
+      clearInterval(typing);
+      typing = null;
+      finishTyping = null;
+      typed.textContent = text;
+      wrap.classList.remove('typing-cursor');
+      setTimeout(() => {
+        $('afterLetter').classList.add('show');
+        $('afterLetter').scrollIntoView({ block: 'nearest', behavior: REDUCED ? 'auto' : 'smooth' });
+      }, REDUCED ? 0 : 400);
+    };
+
+    if (REDUCED) { finishTyping(); return; }
+    wrap.classList.add('typing-cursor');
+    typing = setInterval(() => {
+      if (i < chars.length) typed.textContent += chars[i++];
+      else finishTyping();
+    }, 38);
+  }
+
+  function openLetter() {
+    if (opened) return;
+    const input = $('nameInput');
+    const name = input.value.trim();
+    if (!name) {
+      const seal = $('waxSeal');
+      seal.classList.add('shake');
+      setTimeout(() => seal.classList.remove('shake'), 600);
+      input.focus();
+      return;
+    }
+    opened = true;
+    const formatted = name.charAt(0).toLocaleUpperCase('fr') + name.slice(1);
+    const sig = letter && letter.from ? '— ' + letter.from : '';
+    const textPromise = pickText(formatted);
+
+    $('waxSeal').classList.add('broken');
+    setTimeout(() => $('envelope').classList.add('open'), 300);
+    const r = $('envelope').getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height * 0.58, 30);
+
+    setTimeout(async () => {
+      const text = await textPromise;
+      if (!opened) return;
+      showOverlay($('letterModal'), $('parchmentCard'));
+      startTyping(text, sig);
+    }, 900);
+  }
+
+  function closeLetter() {
+    clearInterval(typing);
+    typing = null;
+    finishTyping = null;
+    hideOverlay($('letterModal'));
+    $('afterLetter').classList.remove('show');
+    $('letterContent').classList.remove('typing-cursor');
+    setTimeout(() => {
+      resetAsk();
+      $('envelope').classList.remove('open');
+      $('waxSeal').classList.remove('broken');
+      opened = false;
+      setTimeout(() => $('openBtn').focus({ preventScroll: true }), 520);
+    }, 400);
+  }
+
+  // ---------- Question ----------
+  function onNo() {
+    noCount++;
+    if (noCount >= NO_LABELS.length) $('noBtn').hidden = true;
+    else $('noBtn').textContent = NO_LABELS[noCount];
+    $('yesBtn').style.setProperty('--yes-size', (1 + Math.min(noCount, 6) * 0.12) + 'rem');
+  }
+  function onYes() {
+    $('ask').hidden = true;
+    $('thanks').hidden = false;
+    $('reply').hidden = false;
+    const r = $('thanks').getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top, 90);
+    setTimeout(() => burst(window.innerWidth * 0.25, window.innerHeight * 0.4, 50), 350);
+    setTimeout(() => burst(window.innerWidth * 0.75, window.innerHeight * 0.4, 50), 600);
+  }
+  function onReply() {
+    const text = 'Oui ! Je veux bien être ta Valentine ❤️';
+    if (navigator.share) {
+      navigator.share({ text: text }).catch(() => {});
+    } else {
+      window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    }
+  }
+
+  // ---------- Composer ----------
+  function openCompose() { showOverlay($('composeModal'), $('composeCard')); }
+  function closeCompose() { hideOverlay($('composeModal')); restoreFocus(); }
+  function onCompose(e) {
+    e.preventDefault();
+    const to = $('composeTo').value.trim();
+    if (!to) {
+      $('composeError').hidden = false;
+      $('composeTo').focus();
+      return;
+    }
+    $('composeError').hidden = true;
+    draft = { to: to, from: $('composeFrom').value.trim(), msg: $('composeMsg').value.trim().slice(0, MSG_MAX) };
+    $('linkOut').value = buildLink(draft);
+    $('copyStatus').textContent = '';
+    $('shareBtn').hidden = !navigator.share;
+    $('composeResult').hidden = false;
+    $('composeResult').scrollIntoView({ block: 'nearest', behavior: REDUCED ? 'auto' : 'smooth' });
+  }
+  function onCopy() {
+    const inp = $('linkOut');
+    const done = (ok) => {
+      $('copyStatus').textContent = ok ? 'Lien copié.' : 'Lien sélectionné. Copie-le avec Ctrl+C ou par un appui long.';
+    };
+    inp.focus();
+    inp.select();
+    try {
+      navigator.clipboard.writeText(inp.value).then(() => done(true), () => done(false));
+    } catch (err) { done(false); }
+  }
+  function onShare() {
+    if (!draft || !navigator.share) return;
+    navigator.share({ title: "Une lettre t'attend ❤️", url: $('linkOut').value }).catch(() => {});
+  }
+  function onTest() {
+    if (!draft) return;
+    applyLetter(draft);
+    closeCompose();
+  }
+
+  // ---------- AI settings ----------
+  function openAi() {
+    $('aiKey').value = store.get('groq_api_key');
+    $('aiModel').value = store.get('groq_model') || DEFAULT_MODEL;
+    $('aiStatus').textContent = '';
+    showOverlay($('aiModal'), $('aiCard'));
+  }
+  function closeAi() { hideOverlay($('aiModal')); restoreFocus(); }
+  function saveAi() {
+    const key = $('aiKey').value.trim();
+    const model = $('aiModel').value.trim();
+    store.set('groq_api_key', key);
+    store.set('groq_model', model && model !== DEFAULT_MODEL ? model : '');
+    $('aiStatus').textContent = key ? 'Enregistré. Les prochaines lettres utiliseront l\'IA.' : 'Clé supprimée. Les textes enregistrés seront utilisés.';
+    setTimeout(closeAi, 900);
+  }
+
+  // ---------- Wiring ----------
+  $('openBtn').addEventListener('click', (e) => { e.stopPropagation(); openLetter(); });
+  $('waxSeal').addEventListener('click', () => { if (!$('nameInput').readOnly) $('nameInput').focus(); });
+  $('nameInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') openLetter(); });
+  $('letterContent').addEventListener('click', () => { if (finishTyping) finishTyping(); });
+  $('restartBtn').addEventListener('click', closeLetter);
+  $('letterModal').addEventListener('click', (e) => { if (e.target === $('letterModal')) closeLetter(); });
+  $('yesBtn').addEventListener('click', onYes);
+  $('noBtn').addEventListener('click', onNo);
+  $('replyBtn').addEventListener('click', onReply);
+  $('musicBtn').addEventListener('click', () => setMusic(!musicWanted));
+
+  $('composeOpen').addEventListener('click', openCompose);
+  $('composeClose').addEventListener('click', closeCompose);
+  $('composeModal').addEventListener('click', (e) => { if (e.target === $('composeModal')) closeCompose(); });
+  $('composeForm').addEventListener('submit', onCompose);
+  $('composeMsg').addEventListener('input', () => { $('msgCount').textContent = $('composeMsg').value.length + ' / ' + MSG_MAX; });
+  $('copyBtn').addEventListener('click', onCopy);
+  $('shareBtn').addEventListener('click', onShare);
+  $('testBtn').addEventListener('click', onTest);
+
+  $('aiOpen').addEventListener('click', openAi);
+  $('aiClose').addEventListener('click', closeAi);
+  $('aiModal').addEventListener('click', (e) => { if (e.target === $('aiModal')) closeAi(); });
+  $('aiSave').addEventListener('click', saveAi);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if ($('letterModal').classList.contains('active')) closeLetter();
+    else if ($('composeModal').classList.contains('active')) closeCompose();
+    else if ($('aiModal').classList.contains('active')) closeAi();
+  });
+  window.addEventListener('resize', () => { if (raf) sizeCanvas(); });
+
+  resetAsk();
+  floatingHearts();
+  readParams();
+})();
+</script>
+</body>
+</html>
